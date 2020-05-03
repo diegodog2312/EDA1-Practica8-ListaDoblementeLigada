@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include "dlist.h"
 
+//Función para crear una lista
 dlist *create_dlist(){
     dlist *l = (dlist*)malloc(sizeof(dlist));
     l->head = NULL;
@@ -11,6 +12,7 @@ dlist *create_dlist(){
     return l;
 }
 
+//Función para eliminar la lista
 bool remove_dlist(dlist *l){
     if(!is_empty_dlist(l))
         empty_dlist(l);
@@ -18,6 +20,7 @@ bool remove_dlist(dlist *l){
     return true;
 }
 
+//Función para buscar un dato por su posición
 DATA search_dlist(dlist *l, int pos){
     if(pos == 0) return l->head->data;
     else if(pos == l->num-1) return l->tail->data;
@@ -31,6 +34,7 @@ DATA search_dlist(dlist *l, int pos){
     return -1;
 }
 
+//Función para buscar un nodo por su posición
 dnode* search_dnode_dlist(dlist *l, int pos){
     if(pos == 0) return l->head;
     else if(pos == l->num-1) return l->tail;
@@ -44,6 +48,8 @@ dnode* search_dnode_dlist(dlist *l, int pos){
     return NULL;
 }
 
+//Función para buscar un dato, 
+//retorna la posición en la que se encuentra
 int locate_dlist(dlist *l, DATA data){
     dnode *t = l->head;
     for(int i= 0; i <l->num; i++){
@@ -53,6 +59,7 @@ int locate_dlist(dlist *l, DATA data){
     return -1;
 }
 
+//Función para imprimir una lista
 void print_dlist(dlist *l){
     dnode *t = l->head;
     printf("[ ");
@@ -64,12 +71,14 @@ void print_dlist(dlist *l){
     printf("]\n");
 }
 
+//Función para vaciar la lista
 void empty_dlist(dlist *l){
     if(is_empty_dlist(l)) return;
     dnode *t = l->head;
     while(remove_init(l));
 }
 
+//Función para eliminar un dato
 bool delete_data(dlist *l, DATA data){
     dnode *t = l->head;
     for(int i =0; i < l->num; i++){
@@ -79,11 +88,13 @@ bool delete_data(dlist *l, DATA data){
     }
 }
 
+//Función para compribar si la lista está vacía
 bool is_empty_dlist(dlist *l){
     if(l->head == NULL && l->tail == NULL) return true;
     return false;
 }
 
+//Función para insertar al inicio
 bool insert_init(dlist* l, DATA data){
     if(l == NULL) return false;
     dnode *nuevo = create_dnode(data);
@@ -100,6 +111,7 @@ bool insert_init(dlist* l, DATA data){
     return true;
 }
 
+//Función para insertar al final
 bool insert_end(dlist* l, DATA data){
     if(l == NULL) return false;
     dnode *nuevo = create_dnode(data);
@@ -116,6 +128,7 @@ bool insert_end(dlist* l, DATA data){
     return true;
 }
 
+//Función para insertar un dato en una posición dada
 bool insert_dlist(dlist* l, DATA data,  int pos){
     if(l == NULL) return false;
     dnode *nuevo = create_dnode(data);
@@ -138,6 +151,7 @@ bool insert_dlist(dlist* l, DATA data,  int pos){
     return false;
 }
 
+//Función para eliminar al final
 bool remove_end(dlist *l){
     if(l == NULL || is_empty_dlist(l)) return false;
     if(l->head ==l->tail){
@@ -155,6 +169,7 @@ bool remove_end(dlist *l){
     return true;
 }
 
+//Función para eliminar al inicio
 bool remove_init(dlist *l){
     if(l == NULL || is_empty_dlist(l)) return false;
     if(l->head ==l->tail){
@@ -172,6 +187,7 @@ bool remove_init(dlist *l){
     return true;
 }
 
+//Función para eliminar por posición
 bool remove_pos(dlist *l ,int pos){
     if(pos == 0){
         return remove_init(l);
