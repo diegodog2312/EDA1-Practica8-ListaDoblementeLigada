@@ -128,8 +128,8 @@ bool insert_cdlist(cdlist* l, DATA data,  int pos){
     if(l == NULL) return false;
     cdnode *nuevo = create_cdnode(data);
     if(pos ==0) return insert_init(l, data);
-    else if(pos == l->num-1)
-        return insert_end(l,data);
+    else if(pos == l->num-1) return insert_end(l,data);
+    else if(pos == 1 && l->num==1) return insert_end(l,data);    
     else if(pos >0 && pos< l->num-1 || pos ==1 && l->num==2){
         cdnode *t = l->head->next;
         for(int i =1; i < pos; i++){
