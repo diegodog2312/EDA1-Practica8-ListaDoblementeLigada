@@ -133,8 +133,8 @@ bool insert_dlist(dlist* l, DATA data,  int pos){
     if(l == NULL) return false;
     dnode *nuevo = create_dnode(data);
     if(pos ==0) return insert_init(l, data);
-    else if(pos == l->num-1)
-        return insert_end(l,data);
+    else if(pos == l->num-1) return insert_end(l,data);
+    else if(pos == 1 && l->num==1) return insert_end(l,data); 
     else if(pos >0 && pos< l->num-1 || pos ==1 && l->num==2){
         dnode *t = l->head->next;
         for(int i =1; i < pos; i++){
